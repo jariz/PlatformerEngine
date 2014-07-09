@@ -1,0 +1,7 @@
+{
+    "name": "PlatformerEngine",
+    "version": "0.0.1",
+    "dependencies": {
+        "eyehurt": "0.0.1"
+    }
+}
