@@ -88,7 +88,7 @@ module Engine {
         }
 
         processCommand(command:string):void {
-            try {
+//            try {
                 command = command.trim();
                 var carr = command.split(/ /);
                 if(carr.length == 0) throw "";
@@ -97,10 +97,10 @@ module Engine {
 
                 var cmd:Command = this.commandLookup(first, params);
                 cmd.run(params);
-            }
-            catch(e) {
-                console.error(e);
-            }
+//            }
+//            catch(e) {
+//                console.error(e);
+//            }
 
             this.interface.prompt();
         }

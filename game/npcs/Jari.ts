@@ -4,7 +4,7 @@
 module Game {
     export module NPCs {
         export class Jari implements Engine.NPC {
-            Name:string = "Jari";
+            Name:string = "Receptionist";
 
             whereYouGoingBruh() {
                 Engine.IO.npcTalk(this, "Where do you think you're going? You need a ticket!");
@@ -18,7 +18,7 @@ module Game {
                 var t = this;
                 var r = -1;
                 var m = [
-                    "Welcome to the PlatformerTS museum!",
+                    "Welcome to the PlatformerEngine museum!",
                     "Do you have tickets?",
                     "Tickets are $ 2,- a person",
                     "Can't get in without a ticket."
@@ -35,7 +35,7 @@ module Game {
             }
 
             leave(room:Engine.Room):void {
-                clearTimeout(t.timeOut);
+                clearTimeout(this.timeOut);
             }
 
         }

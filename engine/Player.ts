@@ -1,11 +1,13 @@
 /// <reference path="Room.ts" />
 /// <reference path="Logic.ts" />
+/// <reference path="Item.ts" />
 
 module Engine {
     export class Player {
         public static X:number;
         public static Y:number;
         public static currentRoom:Room;
+        public static Inventory:Item[] = [];
 
         /**
          * Let the player enter a room at the specified coordinates
@@ -33,6 +35,48 @@ module Engine {
                 if(room.X == X && room.Y == Y)
                     found = true;
             });
+            return found;
+        }
+
+        public static giveItem(item:Item, notify:boolean) {
+            if(notify)
+                console.info("You received: "+node.color(item.Name, item.Color));
+
+            if(this.hasItem(item.ID)) throw "Player already has this item";
+
+            this.Inventory.push(item);
+        }
+
+        public static takeItem(id:string, notify:boolean) {
+            var player = this;
+            var item = this.getItem(id);
+            if(notify)
+                console.error("You lost: "+node.color(item.Name, item.Color));
+
+            this.Inventory.forEach(function(item:Item, index:number) {
+                player.Inventory.splice(index, 1);
+            })
+        }
+
+        public static hasItem(id:string) {
+            var found:Item = undefined;
+            this.Inventory.forEach(function(item:Item) {
+                if(item.ID == id) found = item;
+            });
+            return typeof found != "undefined";
+        }
+
+        /**
+         * Returns the item associated to this ID.
+         * Throws exception if invalid ID is passed, so use hasItem first.
+         * @param id
+         */
+        public static getItem(id:string) {
+            var found:Item = undefined;
+            this.Inventory.forEach(function(item:Item) {
+                if(item.ID == id) found = item;
+            });
+            if(!found) throw "ID not found in inventory"
             return found;
         }
 

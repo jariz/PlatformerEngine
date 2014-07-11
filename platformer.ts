@@ -22,6 +22,7 @@ load("engine/Logic");
 load("engine/Player");
 load("engine/NPC");
 load("engine/Util");
+load("game/Bootstrap");
 
 //load game specific classes
 var gameClasses = [];
@@ -33,6 +34,7 @@ var loadDir = function(dir:String) {
 
 //add classes
 loadDir("game/commands");
+loadDir("game/items");
 loadDir("game/npcs");
 loadDir("game/rooms");
 loadDir("engine/commands"); //core commands
@@ -47,4 +49,4 @@ gameClasses.forEach(function(file) {
 Engine.Bootstrap();
 
 //start the game
-//Game.Bootstrap();
+Game.Bootstrap();
